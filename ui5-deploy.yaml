@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: changerecordreport
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: CH_ERP_PLD
+          url: http://pld.pp.virtual:443
+          client: '300'
+        app:
+          name: BAY0_AB_CR
+          package: BAY0_AB
+          transport: PLDK911033
+        exclude:
+          - /test/
